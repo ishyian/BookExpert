@@ -5,16 +5,17 @@
 
 ### Інструкція
 
-Firstly, you need to input lyrics of track and tap to Guess button. Our app will find all the songs
-that have these lyrics and one by one ask you about guessing correctness. Also you can listen
-preview of track in app and see cover of song.
+Натисніть "Почати" та почніть розмову з експертом. Потрібно лише написати, що хочете отримати рекомандацію у довільний формі("порекомендуй книгу") та виберіть тему рекомендації - наш експерт підбере книгу та допоможе її знайти. Також у додатку присутня історія рекомандацій, щоб не загубити не одної книжки, яку запропонував БукЕксперт.
 
-### Installing
+### Встановлення додатку
 
-Download apk file under apk folder and install it on your phone with Android OS. Minimum OS version
-- 21.
+Завантажте apk файл з посилання Firebase App Distribution та встановіть на телефон з Android OS. Мінімальна версія OS - 23.
 
-## Built With
+## Як працює
+
+https://user-images.githubusercontent.com/34608335/150692233-2df38b81-3101-4cb3-adf9-3935aa268722.mp4
+
+## Технологічний стек
 
 * Kotlin
 * Android SDK
