@@ -1,7 +1,9 @@
 package com.revolution.bookexpert.other.custom.extensions
 
+import android.app.SearchManager
 import android.content.Context
 import android.content.DialogInterface
+import android.content.Intent
 import android.content.res.Resources
 import android.text.Editable
 import android.text.TextWatcher
@@ -176,6 +178,12 @@ fun Fragment.drawSimpleSelectorDialog(
 
 inline val FragmentManager.currentFragment: Fragment?
     get() = this.findFragmentById(R.id.container)
+
+fun Fragment.openSearchQuery(query: String) {
+    val intent = Intent(Intent.ACTION_WEB_SEARCH)
+    intent.putExtra(SearchManager.QUERY, query)
+    startActivity(intent)
+}
 
 
 

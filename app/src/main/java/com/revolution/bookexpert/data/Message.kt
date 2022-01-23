@@ -10,7 +10,7 @@ class Message(
     private var text: String?,
     private val createdAt: Date,
     private val image: Image? = null,
-    val voice: Voice? = null
+    val search: Search? = null
 ) : IMessage, MessageContentType.Image, MessageContentType {
 
     override fun getId() = id
@@ -24,6 +24,6 @@ class Message(
     override fun getImageUrl(): String? = image?.url
 
     class Image(val url: String)
-    class Voice(val description: String, val duration: Int)
+    class Search(val query: String)
 }
 

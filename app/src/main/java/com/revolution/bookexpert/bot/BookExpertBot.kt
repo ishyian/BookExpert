@@ -4,6 +4,7 @@ import android.content.Context
 import com.revolution.bookexpert.data.BookType
 import com.revolution.bookexpert.data.Library
 import com.revolution.bookexpert.data.Message
+import com.revolution.bookexpert.other.TinyDB
 import java.util.Date
 
 class BookExpertBot(val context: Context) {
@@ -15,6 +16,10 @@ class BookExpertBot(val context: Context) {
     private var bookExpertBotReply: BookExpertBotReply? = null
 
     private var lastMessageAskForHelp = false
+
+    private val tinyDb by lazy {
+        TinyDB(context)
+    }
 
     fun setBookExpertBotReply(container: BookExpertBotReply) {
         bookExpertBotReply = container
@@ -38,10 +43,10 @@ class BookExpertBot(val context: Context) {
         bookExpertBotReply?.onBotReplied(botReply)
     }
 
-    private fun writeVoiceMessage(message: String) {
+    private fun writeSearchMessage(message: String) {
         ++messageState
         val botReply =
-            Message(getRandomId(), getBookExpertUser(), "", Date(), voice = Message.Voice(message, duration = 25))
+            Message(getRandomId(), getBookExpertUser(), "", Date(), search = Message.Search(message))
         bookExpertBotReply?.onBotReplied(botReply)
     }
 
@@ -49,7 +54,7 @@ class BookExpertBot(val context: Context) {
         0 -> write(greetings.random())
 
         1 -> if (!isMessageContainsOneOfTheWords(userMessage, greetingsWords)) {
-            write("Ви не плануєте привітати мене? \uD83E\uDD72")
+            write("Ви не плануєте привітати мене?")
         } else {
             write("Приємно познайомитись!")
         }
@@ -70,7 +75,7 @@ class BookExpertBot(val context: Context) {
             }
             else -> {
                 write(
-                    "На жаль, я Вас не розумію \uD83D\uDE05. Але можу порекомендовати книгу з цих тем:\n- прокрастинація;\n- проблеми у комунікації;\n" +
+                    "На жаль, я Вас не розумію. Але можу порекомендовати книгу з цих тем:\n- прокрастинація;\n- проблеми у комунікації;\n" +
                         "- тривожність;\n" +
                         "- відсутність турботи про себе;\n" +
                         "- відсутність ворк-лайф балансу;\n- інші."
@@ -88,9 +93,13 @@ class BookExpertBot(val context: Context) {
 
     private fun sendRandomBookFromType(bookType: BookType) {
         val randomBook = Library.books.filter { it.type == bookType }.random()
+        val historyItems = tinyDb.getListHistory("history_items")
+        historyItems.add(randomBook)
+        tinyDb.putHistoryList("history_items", historyItems)
         write("Ми знайшли підходящу книгу! Це книга \"${randomBook.title}\" за авторством ${randomBook.author}")
+        write(context.getString(randomBook.description))
         writeImageMessage(randomBook.image)
-        writeVoiceMessage(context.getString(randomBook.description))
+        writeSearchMessage(randomBook.title)
     }
 
     private fun getBookType(userMessage: String): BookType {

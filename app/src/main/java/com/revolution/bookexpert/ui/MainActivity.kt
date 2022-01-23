@@ -10,7 +10,7 @@ import com.revolution.bookexpert.other.base.OnSpeechRecognizeListener
 import com.revolution.bookexpert.other.custom.annotations.GlobalNavigatorHolderQualifier
 import com.revolution.bookexpert.other.custom.annotations.GlobalRouterQualifier
 import com.revolution.bookexpert.other.custom.extensions.currentFragment
-import com.revolution.bookexpert.ui.chat.BookExpertChatFragment
+import com.revolution.bookexpert.ui.main.MainFragment
 import dagger.hilt.android.AndroidEntryPoint
 import ru.terrakok.cicerone.NavigatorHolder
 import ru.terrakok.cicerone.Router
@@ -35,7 +35,7 @@ class MainActivity : BaseActivity() {
 
     override fun renderView(savedInstanceState: Bundle?) {
         if (savedInstanceState == null) {
-            router.newRootScreen(BookExpertChatFragment.toScreen())
+            router.newRootScreen(MainFragment.toScreen())
         }
     }
 
