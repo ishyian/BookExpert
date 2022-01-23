@@ -51,7 +51,7 @@ class BookExpertChatFragment : BaseFragment(),
     private val viewBinding: BookExpertChatFragmentBinding by viewBinding()
 
     private val imageLoader: ImageLoader by lazy {
-        ImageLoader { imageView: ImageView, url: String?, payload: Any? ->
+        ImageLoader { imageView: ImageView, url: String?, _: Any? ->
             Glide.with(requireContext()).load(url).into(imageView)
         }
     }
@@ -121,11 +121,11 @@ class BookExpertChatFragment : BaseFragment(),
                 this
             )
 
-        messagesAdapter = MessagesListAdapter(Companion.senderId, holders, imageLoader)
+        messagesAdapter = MessagesListAdapter(senderId, holders, imageLoader)
         messagesAdapter?.setLoadMoreListener(this)
         messagesAdapter?.setOnMessageClickListener {
             if (it.search != null) {
-                openSearchQuery("${it.search}")
+                openSearchQuery(it.search.query)
             }
         }
         viewBinding.messagesList.setAdapter(messagesAdapter)
@@ -135,10 +135,10 @@ class BookExpertChatFragment : BaseFragment(),
         // Nothing for now
     }
 
-    override fun onBotReplied(message: Message) {
+    override fun onBotReplied(message: Message, scroll: Boolean) {
         Handler(Looper.getMainLooper()).postDelayed(
             {
-                messagesAdapter?.addToStart(message, true)
+                messagesAdapter?.addToStart(message, scroll)
             }, 1000
         )
     }

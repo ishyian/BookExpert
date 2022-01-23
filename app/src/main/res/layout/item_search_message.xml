@@ -36,6 +36,8 @@
             android:paddingStart="16dp"
             android:paddingEnd="16dp"
             android:textAllCaps="false"
+            android:focusable="false"
+            android:clickable="false"
             android:textColor="@color/white"
             android:textSize="14sp" />
 

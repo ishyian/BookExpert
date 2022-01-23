@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "560904352697",
+    "project_id": "book-expert",
+    "storage_bucket": "book-expert.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:560904352697:android:f438e96c8f45364efd7c68",
+        "android_client_info": {
+          "package_name": "com.revolution.bookexpert"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "560904352697-25f1vcqkovuf0seedelg9dfhrcbh66a5.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAhzl3dlPfackQQHCH1I5l98XKSkcVGW9E"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "560904352697-25f1vcqkovuf0seedelg9dfhrcbh66a5.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

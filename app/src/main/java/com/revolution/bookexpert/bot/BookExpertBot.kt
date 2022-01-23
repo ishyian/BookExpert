@@ -1,6 +1,7 @@
 package com.revolution.bookexpert.bot
 
 import android.content.Context
+import com.revolution.bookexpert.R
 import com.revolution.bookexpert.data.BookType
 import com.revolution.bookexpert.data.Library
 import com.revolution.bookexpert.data.Message
@@ -30,37 +31,46 @@ class BookExpertBot(val context: Context) {
         userMessage = userMessage.lowercase().trim()
     }
 
-    private fun write(message: String) {
+    private fun write(message: String, scroll: Boolean = true) {
         ++messageState
         botMessage = message
         val botReply = Message(getRandomId(), getBookExpertUser(), botMessage, Date())
-        bookExpertBotReply?.onBotReplied(botReply)
+        bookExpertBotReply?.onBotReplied(botReply, scroll)
     }
 
     private fun writeImageMessage(image: String) {
         ++messageState
         val botReply = Message(getRandomId(), getBookExpertUser(), "", Date(), Message.Image(image))
-        bookExpertBotReply?.onBotReplied(botReply)
+        bookExpertBotReply?.onBotReplied(botReply, false)
     }
 
     private fun writeSearchMessage(message: String) {
         ++messageState
         val botReply =
             Message(getRandomId(), getBookExpertUser(), "", Date(), search = Message.Search(message))
-        bookExpertBotReply?.onBotReplied(botReply)
+        bookExpertBotReply?.onBotReplied(botReply, false)
     }
 
     fun handle() = when (messageState) {
         0 -> write(greetings.random())
-
         1 -> if (!isMessageContainsOneOfTheWords(userMessage, greetingsWords)) {
-            write("Ви не плануєте привітати мене?")
+            write(context.getString(R.string.no_greetings))
         } else {
-            write("Приємно познайомитись!")
+            write(context.getString(R.string.glad_to_see_you))
+            write(
+                "Дайте вгадаю, навіщо ви тут - напевне за книгою? Напишіть \"Так\" або \"Давай\", якщо є таке бажання!"
+            )
         }
-
         else -> when {
-            isMessageContainsOneOfTheWords(userMessage, askWords) -> {
+            lastMessageAskForHelp -> {
+                val bookType = getBookType(userMessage)
+                sendRandomBookFromType(bookType)
+                lastMessageAskForHelp = false
+            }
+            isMessageContainsOneOfTheWords(userMessage, askWords) || isMessageContainsOneOfTheWords(
+                userMessage,
+                yesWords
+            ) -> {
                 write(
                     "У цьому я професіонал! Можу порекомендовати книгу з цих тем:\n- прокрастинація;\n- проблеми у комунікації;\n" +
                         "- тривожність;\n" +
@@ -69,16 +79,14 @@ class BookExpertBot(val context: Context) {
                 )
                 lastMessageAskForHelp = true
             }
-            lastMessageAskForHelp -> {
-                val bookType = getBookType(userMessage)
-                sendRandomBookFromType(bookType)
+            isMessageContainsOneOfTheWords(userMessage, thanksWords) -> {
+                write(
+                    context.getString(R.string.please)
+                )
             }
             else -> {
                 write(
-                    "На жаль, я Вас не розумію. Але можу порекомендовати книгу з цих тем:\n- прокрастинація;\n- проблеми у комунікації;\n" +
-                        "- тривожність;\n" +
-                        "- відсутність турботи про себе;\n" +
-                        "- відсутність ворк-лайф балансу;\n- інші."
+                    "На жаль, я Вас не зрозумів. Але все таки можу порекомендовати книгу. Напишіть \"Так\" або \"Давай\", якщо є таке бажання!"
                 )
             }
         }
@@ -96,8 +104,8 @@ class BookExpertBot(val context: Context) {
         val historyItems = tinyDb.getListHistory("history_items")
         historyItems.add(randomBook)
         tinyDb.putHistoryList("history_items", historyItems)
-        write("Ми знайшли підходящу книгу! Це книга \"${randomBook.title}\" за авторством ${randomBook.author}")
-        write(context.getString(randomBook.description))
+        write("Ми знайшли підходящу книгу! Це книга \"${randomBook.title}\" за авторством ${randomBook.author}", true)
+        write(context.getString(randomBook.description), false)
         writeImageMessage(randomBook.image)
         writeSearchMessage(randomBook.title)
     }
@@ -115,5 +123,5 @@ class BookExpertBot(val context: Context) {
 }
 
 interface BookExpertBotReply {
-    fun onBotReplied(message: Message)
+    fun onBotReplied(message: Message, scroll: Boolean)
 }

@@ -6,6 +6,8 @@ apply plugin: 'kotlin-kapt'
 
 apply plugin: 'dagger.hilt.android.plugin'
 
+apply plugin: 'com.google.gms.google-services'
+
 android {
     compileSdk 31
     buildToolsVersion "31.0.0"
@@ -88,4 +90,7 @@ dependencies {
     kapt "com.google.dagger:hilt-android-compiler:2.40.5"
     implementation 'com.github.stfalcon-studio:Chatkit:0.4.1'
     implementation 'com.github.kirich1409:viewbindingpropertydelegate:1.5.3'
+
+    implementation platform('com.google.firebase:firebase-bom:29.0.4')
+    implementation 'com.google.firebase:firebase-analytics'
 }

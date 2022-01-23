@@ -8,21 +8,21 @@ object Library {
             title = "Перемоги про крастинацію! Як перестати відкладати справи на завтра.",
             author = "Людвіг П.",
             description = R.string.procrastination_book_1,
-            image = "",
+            image = "https://img.yakaboo.ua/media/catalog/product/cache/1/image/398x565/31b681157c4c1a5551b0db4896e7972f/9/4/94_1_41.jpg",
             type = BookType.PROCRASTINATION
         ),
         Book(
             title = "Зціли себе сам",
             author = "Луиза Хей",
             description = R.string.anxiety_book_1,
-            image = "",
+            image = "https://book-ye.com.ua/upload/medialibrary/432/Ztsili-sebe-sam.jpg",
             type = BookType.ANXIETY
         ),
         Book(
             title = "Психологія мотивації. Теорія і практика мотивування. Мотиваційний тренінг.",
             author = "Сергей Занюк",
             description = R.string.communication_book_1,
-            image = "",
+            image = "https://s.mind.ua/img/forall/books/1/17.jpg",
             type = BookType.COMMUNICATION
         ),
         Book(
@@ -130,6 +130,89 @@ object Library {
             image = "https://content2.rozetka.com.ua/goods/images/big/181360688.jpg",
             type = BookType.OTHER
         ),
-
+        Book(
+            title = "4D БРЕНДИНГ: зламуючи корпоративний код мережевої економіки",
+            author = "Томас Ґед",
+            description = R.string.communication_book_2,
+            image = "https://s.mind.ua/img/forall/books/1/18.jpg",
+            type = BookType.COMMUNICATION
+        ),
+        Book(
+            title = "Великі бренди - великі проблеми: Чим більш відома компанія, тим важчий її шлях.",
+            author = "Джек Траут",
+            description = R.string.communication_book_3,
+            image = "https://s.mind.ua/img/forall/books/1/20.jpg",
+            type = BookType.COMMUNICATION
+        ),
+        Book(
+            title = "Мобільності",
+            author = "Джон Уррі",
+            description = R.string.communication_book_4,
+            image = "https://s.mind.ua/img/forall/books/1/22.jpg",
+            type = BookType.COMMUNICATION
+        ),
+        Book(
+            title = "Персональний брендинг: технології досягнення особ. популярності",
+            author = "Філіп Котлер, Ірвінг Рейн, Майкл Хемлін, Мартін Стіллер",
+            description = R.string.communication_book_5,
+            image = "https://s.mind.ua/img/forall/books/1/12.jpg",
+            type = BookType.COMMUNICATION
+        ),
+        Book(
+            title = "Легкий спосіб перестати відкладати справи на потім.",
+            author = "Нейл Фьоре",
+            description = R.string.procrastination_book_2,
+            image = "https://img.yakaboo.ua/media/catalog/product/cache/1/image/398x565/31b681157c4c1a5551b0db4896e7972f/3/4/341293_20626740.jpg",
+            type = BookType.PROCRASTINATION
+        ),
+        Book(
+            title = "Прокрастинація та самосаботаж.",
+            author = "Эйлин Леви",
+            description = R.string.procrastination_book_3,
+            image = "http://loveread.ec/img/photo_books/59587.jpg",
+            type = BookType.PROCRASTINATION
+        ),
+        Book(
+            title = "Мистецтво прокрастинації: як правильно тягнути час, лопотрясувати і відкладати на завтра.",
+            author = "Джон Перрі",
+            description = R.string.procrastination_book_4,
+            image = "https://img.yakaboo.ua/media/catalog/product/cache/1/image/398x565/31b681157c4c1a5551b0db4896e7972f/i/m/img280_47.jpg",
+            type = BookType.PROCRASTINATION
+        ),
+        Book(
+            title = "Прокрастинація. Перша допомога.",
+            author = "Хенри Шувенбург, Таня ван Эссен",
+            description = R.string.procrastination_book_5,
+            image = "https://img.yakaboo.ua/media/catalog/product/cache/1/image/398x565/31b681157c4c1a5551b0db4896e7972f/6/0/6000036964.jpg",
+            type = BookType.PROCRASTINATION
+        ),
+        Book(
+            title = "Вдивляючись у сонце. Долаючи страх смерті.",
+            author = "Ірвін Ялом",
+            description = R.string.anxiety_book_2,
+            image = "https://book-ye.com.ua/upload/medialibrary/247/Vdivlyayuchis-u-sontse.-Dolayuchi-strakh-smerti.jpg",
+            type = BookType.ANXIETY
+        ),
+        Book(
+            title = "Любити те, що є.",
+            author = "Байрен Кейті",
+            description = R.string.anxiety_book_3,
+            image = "https://book-ye.com.ua/upload/medialibrary/84b/Lyubiti-te_-shcho-_.jpg",
+            type = BookType.ANXIETY
+        ),
+        Book(
+            title = "Обирай себе. Як подолати страх та сумніви на шляху до повноцінного життя.",
+            author = "Ембер Рей",
+            description = R.string.anxiety_book_4,
+            image = "https://book-ye.com.ua/upload/medialibrary/df3/Obiray-sebe.jpg",
+            type = BookType.ANXIETY
+        ),
+        Book(
+            title = "Перемикайся. Стань тим, ким хочеш бути.",
+            author = "Маршалл Ґолдсміт, Марк Рейтер",
+            description = R.string.anxiety_book_5,
+            image = "https://book-ye.com.ua/upload/medialibrary/f8b/Peremikaysya.-Stan-tim_-kim-khochesh-buti.jpg",
+            type = BookType.ANXIETY
         )
+    )
 }
